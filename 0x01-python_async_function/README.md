@@ -1,7 +1,7 @@
 # 0x01. Python - Async
 
 
-![](https://imgur.com/LmtnDyZ)
+![](https://imgur.com/LmtnDyZ.png)
 
 
 ## Resources
