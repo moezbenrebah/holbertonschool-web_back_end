@@ -1,7 +1,7 @@
 # 0x02. Python - Async Comprehension
 
 
-![](https://imgur.com/a/97m52fW)
+![](https://imgur.com/HRB7JaJ.png)
 
 
 ## Resources
