@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""asychronous coroutine"""
+"""async generator"""
 import asyncio
 import random
-from typing import List
+from typing import Generator
 
 
-async def async_generator() -> List[float]:
+async def async_generator() -> Generator[float, None, None]:
     """
     async_generator: takes no arguments and return
     a random float number
