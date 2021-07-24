@@ -12,13 +12,13 @@ class BasicCache(BaseCaching):
         assign to the dictionary self.cache_data
         the item value for the key key
         """
-        if key is not None and item is not None:
+        if key and item:
             self.cache_data[key] = item
 
     def get(self, key):
         """
         return the value in self.cache_data linked to key
         """
-        if key in self.cache_data:
-            return self.cache_data[key]
+        if key or key in self.cache_data:
+            return self.cache_data.get(key)
         return None
