@@ -19,6 +19,6 @@ class BasicCache(BaseCaching):
         """
         return the value in self.cache_data linked to key
         """
-        if key or key in self.cache_data:
+        if key:
             return self.cache_data.get(key)
         return None
