@@ -10,6 +10,8 @@ class LRUCache(BaseCaching):
     def __init__(self):
         """Initializing"""
         super().__init__()
+        self.cache_data = OrderedDict(self.cache_data)
+
 
     def put(self, key, item):
         """
@@ -19,8 +21,6 @@ class LRUCache(BaseCaching):
         if key and item:
             self.cache_data[key] = item
 
-        self.cache_data = OrderedDict(self.cache_data)
-
         if len(self.cache_data.keys()) > BaseCaching.MAX_ITEMS:
             removedItem = list(self.cache_data.popitem(last=False))[0]
             print("DISCARD:", removedItem)
@@ -29,6 +29,9 @@ class LRUCache(BaseCaching):
         """
         return the value in self.cache_data linked to key
         """
-        if key or key in self.cache_data:
+        if not key or key not in self.cache_data.keys():
+            return None
+        else:
+            list(self.cache_data.keys()).remove(key)
+            list(self.cache_data.keys()).append(key)
             return self.cache_data.get(key)
-        return None
