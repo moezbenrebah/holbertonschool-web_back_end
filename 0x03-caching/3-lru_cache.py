@@ -29,7 +29,7 @@ class LRUCache(BaseCaching):
         """
         return the value in self.cache_data linked to key
         """
-        if key not in self.cache_data:
-            return None
-        self.cache_data.move_to_end(key)
-        return self.cache_data[key]
+        if key in self.cache_data.keys():
+            self.cache_data.move_to_end(key, last=True)
+            return self.cache_data[key]
+        return None
