@@ -20,6 +20,7 @@ class LRUCache(BaseCaching):
             self.cache_data[key] = item
 
         self.cache_data = OrderedDict(self.cache_data)
+        self.cache_data.move_to_end(key)
 
         if len(self.cache_data.keys()) > BaseCaching.MAX_ITEMS:
             removedItem = list(self.cache_data.keys())[0]
