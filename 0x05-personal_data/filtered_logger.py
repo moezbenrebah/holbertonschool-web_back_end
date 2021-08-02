@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""filter_datum module"""
+"""RedactingFormatter module"""
 
 import logging
+import mysql.connector
+import os
 import re
 from typing import List
 
@@ -61,3 +63,21 @@ def get_logger() -> logging.Logger:
     logger.addHandler(ch)
 
     return logger
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """returns a connector to the database"""
+
+    user = os.getenv("PERSONAL_DATA_DB_USERNAME", 'root')
+    password = os.getenv("PERSONAL_DATA_DB_PASSWORD", '')
+    host = os.getenv("PERSONAL_DATA_DB_HOST", 'localhost')
+    db = os.getenv("PERSONAL_DATA_DB_NAME")
+
+    conn = mysql.connector.connect(
+        host=host,
+        database=db,
+        user=user,
+        password=password
+    )
+
+    return conn
