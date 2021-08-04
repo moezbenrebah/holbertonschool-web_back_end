@@ -31,7 +31,18 @@ def unauthorized_err() -> str:
     """
     GET /api/v1/unauthorized
     Return:
-        - Error message
+        - unauthorized error message
     """
     from api.v1.app import unauthorized
     return jsonify(abort(401, description="Unauthorized request"))
+
+
+@app_views.route('/forbidden', methods=['GET'],  strict_slashes=False)
+def forbidden_err() -> str:
+    """
+    GET /api/v1/forbidden
+    Return:
+        - forbidden error message
+    """
+    from api.v1.app import forbidden
+    return jsonify(abort(403, description="forbidden request"))
