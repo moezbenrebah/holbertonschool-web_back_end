@@ -3,7 +3,6 @@
 
 from api.v1.auth.auth import Auth
 import base64
-from models.user import User
 from typing import TypeVar
 
 
@@ -59,6 +58,7 @@ class BasicAuth(Auth):
             self,
             user_email: str,
             user_pwd: str) -> TypeVar('User'):
+        from models.user import User
         """returns the User instance based on his email and password"""
 
         if user_email is None or not isinstance(user_email, str):
@@ -70,6 +70,6 @@ class BasicAuth(Auth):
         if not obj:
             return None
         if obj[0].is_valid_password(user_pwd):
-            return objs[0]
+            return obj[0]
         else:
             return None
