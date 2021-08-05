@@ -50,6 +50,5 @@ class BasicAuth(Auth):
             return None, None
         if decoded_base64_authorization_header.find(':') == -1:
             return None, None
-        a = decoded_base64_authorization_header.replace(":", ", ")
 
-        return a
+        return tuple(decoded_base64_authorization_header.split(":", 1))
