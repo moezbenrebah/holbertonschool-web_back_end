@@ -81,3 +81,22 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     )
 
     return conn
+
+
+def main():
+    db = get_db()
+    user = "SELECT * FROM users"
+    filtered-fields = [i[0] for i in cursor.description]
+    log = get_logger()
+    with db.cursor() as cursor:
+        cursor.execute(user)
+
+        for row in cursor.fetchall():
+            record = ""
+            for j in range(len(filtered-fields)):
+                record += filtered-fields[j] + '=' + str(row[j]) + ';'
+            log.info(record)
+
+
+if __name__ == '__main__':
+    main()
