@@ -83,7 +83,11 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     return conn
 
 
-def main():
+def main() -> None:
+    """
+    connect to a database with get_db, retrieve all rows
+    from users table and display filtered rows
+    """
     db = get_db()
     user = "SELECT * FROM users"
     filtered-fields = [i[0] for i in cursor.description]
