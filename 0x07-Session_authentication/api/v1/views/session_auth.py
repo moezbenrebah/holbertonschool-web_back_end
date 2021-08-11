@@ -28,8 +28,8 @@ def parse_request() -> str:
         return jsonify({"error": "wrong password"}), 401
 
     from api.v1.app import auth
-    session_value = auth.create_session(objs[0].id)
-    result = jsonify(objs[0].to_json())
+    session_value = auth.create_session(user[0].id)
+    result = jsonify(user[0].to_json())
     session_key = os.getenv("SESSION_NAME")
     result.set_cookie(session_key, session_value)
     return result
