@@ -12,11 +12,11 @@ from os import getenv
 def parse_request() -> str:
     """create a route POST /auth_session/login"""
     email = request.form.get('email')
-    if email == "" or email is None:
+    if not email or email is None:
         return jsonify({"error": "email missing"}), 400
 
     password = request.form.get('password')
-    if password == "" or password is None:
+    if not password or password is None:
         return jsonify({"error": "password missing"}), 400
 
     user = User.search({"email": email})
