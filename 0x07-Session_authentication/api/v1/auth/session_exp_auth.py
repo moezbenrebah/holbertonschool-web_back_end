@@ -3,8 +3,10 @@
 
 from api.v1.auth.session_auth import SessionAuth
 from datetime import datetime, timedelta
+from models.user import User
 import os
 from os import getenv
+import uuid
 
 
 class SessionExpAuth(SessionAuth):
@@ -41,16 +43,19 @@ class SessionExpAuth(SessionAuth):
         """return user ID from a session dictionary"""
         if session_id is None:
             return None
-        if session_id not in self.session_dictionary.keys():
+        
+        main_dict = self.user_id_by_session_id[session_id]
+        
+        if session_id not in main_dict.keys():
             return None
         if self.session_duration <= 0:
-            return self.session_dictionary['user_id']
-        if 'created_at' not in session_dictionary.keys():
+            return main_dict['user_id']
+        if 'created_at' not in main_dict.keys():
             return None
 
         t = timedelta(seconds=self.session_dictionary) + \
-            self.session_dictionary['created_at']
+            main_dict['created_at']
 
         if t < datetime.now():
             return None
-        return self.session_dictionary['user_id']
+        return main_dict['user_id']
