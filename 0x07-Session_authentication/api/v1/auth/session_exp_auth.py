@@ -41,11 +41,11 @@ class SessionExpAuth(SessionAuth):
         """return user ID from a session dictionary"""
         if session_id is None:
             return None
-        if session_id not in self.user_id_by_session_id:
+        if session_id not in self.user_id_by_session_id.keys():
             return None
         if self.session_duration <= 0:
             return self.user_id_by_session_id[session_id]['user_id']
-        if "created_at" not in self.user_id_by_session_id[session_id]:
+        if "created_at" not in self.user_id_by_session_id[session_id].keys():
             return None
 
         t = timedelta(seconds=self.session_dictionary) + \
