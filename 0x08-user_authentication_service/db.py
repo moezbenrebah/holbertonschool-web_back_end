@@ -8,6 +8,9 @@ from sqlalchemy.orm.session import Session
 
 from user import Base, User
 
+from sqlalchemy.exc import InvalidRequestError
+from sqlalchemy.orm.exc import NoResultFound
+
 
 class DB:
     """DB class
@@ -36,3 +39,19 @@ class DB:
         self._session.add(user)
         self._session.commit()
         return user
+
+    def find_user_by(self, **kwargs) -> User:
+        """returns the first row found in the users table
+        as filtered by the method’s input arguments
+        """
+
+        args = kwargs.keys()
+
+        for key in args:
+            if not hasattr(User, key):
+                raise InvalidRequestError
+
+        row = self._session.query(User).filter_by(**kwargs).first()
+        if row is None:
+            raise NoResultFound
+        return row
