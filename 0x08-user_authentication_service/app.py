@@ -85,7 +85,7 @@ def get_reset_password_token():
         if not email:
             abort(403)
         res_token = AUTH.get_reset_password_token(email)
-        return jsonify({"email": email, "reset_token": res_token})
+        return jsonify({"email": email, "reset_token": res_token}), 200
 
     except NoResultFound:
         return
