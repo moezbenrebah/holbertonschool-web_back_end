@@ -98,6 +98,7 @@ def update_password():
     new_password = request.form.get("new_password")
 
     try:
+        AUTH.update_password(reset_token, new_password)
         user = AUTH.valid_login(email=email, password=new_password)
         if reset_token:
             return jsonify({"email": user.email,
