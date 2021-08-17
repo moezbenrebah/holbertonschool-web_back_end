@@ -81,13 +81,11 @@ def get_reset_password_token():
     otherwise, generate a token with 200 response.
     """
     email = request.form.get('email')
-    try:
-        user = AUTH._db.find_user_by(email=email)
-        res_token = AUTH.get_reset_password_token(email)
-        return jsonify({"email": user.email, "reset_token": res_token}), 200
-
-    except Exception:
+    user = AUTH._db.find_user_by(email=email)
+    if not user:
         abort(403)
+    res_token = AUTH.get_reset_password_token(email)
+    return jsonify({"email": user.email, "reset_token": res_token}), 200
 
 
 if __name__ == "__main__":
