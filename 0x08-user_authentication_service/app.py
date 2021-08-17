@@ -2,7 +2,8 @@
 """route module for API"""
 
 from auth import Auth
-from flask import Flask, abort, jsonify, make_response, request, redirect, url_for
+from flask import Flask, abort, jsonify, make_response, request,
+redirect, url_for
 
 
 app = Flask(__name__)
