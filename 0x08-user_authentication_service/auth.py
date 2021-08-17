@@ -99,8 +99,8 @@ class Auth:
             if not valid_email:
                 raise ValueError
             token_uuid = _generate_uuid()
-            token = self._db.update_user(valid_email.id,
-                                         reset_token=token_uuid)
-            return token
+            self._db.update_user(valid_email.id, reset_token=token_uuid)
+            return token_uuid
+
         except NoResultFound:
             return
