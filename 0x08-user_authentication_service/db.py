@@ -61,11 +61,15 @@ class DB:
         attributes as passed in the method’s arguments then commit
         changes to the database.
         """
+        if not kwargs:
+            return None
+
         user = self.find_user_by(id=user_id)
 
-        for key, value in kwargs.items():
+        for key in kwargs.keys():
             if not hasattr(User, key):
                 raise ValueError
 
-        setattr(user, key, value)
-        self._session.commit()
+        for k, v in kwargs.items():
+            setattr(user, k, v)
+            self._session.commit()
