@@ -99,9 +99,10 @@ def update_password():
 
     try:
         AUTH.update_password(reset_token, new_password)
-        return jsonify({"email": email, "message": "Password updated"})
+        if reset_token:
+            return jsonify({"email": email, "message": "Password updated"})
 
-    except Exception as e:
+    except Exception:
         abort(403)
 
 
