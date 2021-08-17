@@ -61,12 +61,8 @@ class DB:
         attributes as passed in the method’s arguments then commit
         changes to the database.
         """
-        if not kwargs:
-            return None
-
         user = self.find_user_by(id=user_id)
-
-        valid_attr = User.metadata.tables['users'].columns.keys()
+        valid_attr = User.__table__.columns.keys()
         for key in kwargs.keys():
             if key not in valid_attr:
                 raise ValueError
