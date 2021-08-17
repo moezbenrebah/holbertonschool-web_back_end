@@ -82,13 +82,12 @@ def get_reset_password_token():
     """
     email = request.form.get('email')
     try:
-        if not email:
-            abort(403)
+        user = AUTH._db.find_user_by(email=email)
         res_token = AUTH.get_reset_password_token(email)
-        return jsonify({"email": email, "reset_token": res_token}), 200
+        return jsonify({"email": user.email, "reset_token": res_token}), 200
 
-    except NoResultFound:
-        return
+    except Exception:
+        abort(403)
 
 
 if __name__ == "__main__":
