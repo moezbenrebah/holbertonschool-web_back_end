@@ -62,11 +62,14 @@ class DB:
         changes to the database.
         """
         user = self.find_user_by(id=user_id)
-        valid_attr = User.__table__.columns.keys()
-        for key in kwargs.keys():
+
+        # get columns names from users table like keys
+        valid_attr = User.metadata.tables['users'].columns.keys()
+
+        for key, value in kwargs.items():
             if key not in valid_attr:
                 raise ValueError
+            else:
+                setattr(user, key, value)
 
-        for k, v in kwargs.items():
-            setattr(user, k, v)
         self._session.commit()
