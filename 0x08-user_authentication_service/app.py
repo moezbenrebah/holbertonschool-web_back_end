@@ -2,8 +2,7 @@
 """route module for API"""
 
 from auth import Auth
-from flask import Flask, abort, jsonify, make_response, request,
-redirect, url_for
+from flask import Flask, abort, jsonify, make_response, request, redirect
 
 
 app = Flask(__name__)
@@ -59,7 +58,7 @@ def logout():
     user_session = AUTH.get_user_from_session_id(session_id)
     if session_ID:
         AUTH.destroy_session(user_session.id)
-        return redirect(url_for('/'))
+        return redirect('/')
 
     abort(403)
 
