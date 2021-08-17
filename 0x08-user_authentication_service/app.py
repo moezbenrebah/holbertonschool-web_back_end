@@ -56,13 +56,12 @@ def logout():
     If the user does not exist, respond with a 403 HTTP status.
     """
     session_id = request.cookies.get("session_id")
-    session_ID = AUTH.get_user_from_session_id(session_id=session_id)
+    user_session = AUTH.get_user_from_session_id(session_id)
     if session_ID:
-        AUTH.destroy_session(session_ID)
+        AUTH.destroy_session(user_session.id)
         return redirect(url_for('/'))
 
-    status_code = flask.Response(status=403)
-    return status_code
+    abort(403)
 
 
 if __name__ == "__main__":
