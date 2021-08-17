@@ -99,9 +99,8 @@ def update_password():
 
     try:
         AUTH.update_password(reset_token=reset_token,
-                                 password=new_password)
-        user = AUTH.valid_login(email=email, password=new_password)
-        return jsonify({"email": user.email,
+                             password=new_password)
+        return jsonify({"email": email,
                         "message": "Password updated"}), 200
 
     except Exception:
