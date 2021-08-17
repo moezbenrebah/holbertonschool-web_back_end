@@ -63,11 +63,8 @@ class DB:
         """
         user = self.find_user_by(id=user_id)
 
-        # get columns names from users table like keys
-        valid_attr = User.metadata.tables['users'].columns.keys()
-
         for key, value in kwargs.items():
-            if key not in valid_attr:
+            if not hasattr(user, key):
                 raise ValueError
             else:
                 setattr(user, key, value)
