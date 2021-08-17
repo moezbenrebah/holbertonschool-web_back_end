@@ -2,7 +2,7 @@
 """route module for API"""
 
 from auth import Auth
-from flask import Flask, abort, jsonify, make_response, request
+from flask import Flask, abort, jsonify, make_response, request, redirect, url_for
 
 
 app = Flask(__name__)
@@ -46,6 +46,22 @@ def login():
         response.set_cookie("session_id", session_ID)
         return response
     abort(401)
+
+
+@app.route('/sessions', methods=['DELETE'])
+def logout():
+    """Find the user with the requested session ID. If the user exists
+    destroy the session and redirect the user to GET /.
+    If the user does not exist, respond with a 403 HTTP status.
+    """
+    session_id = request.cookies.get("session_id")
+    session_ID = AUTH.get_user_from_session_id(session_id=session_id)
+    if session_ID:
+        AUTH.destroy_session(self, session_ID)
+        return redirect(url_for('/'))
+
+    status_code = flask.Response(status=403)
+    return status_code
 
 
 if __name__ == "__main__":
