@@ -66,8 +66,7 @@ class DB:
 
         user = self.find_user_by(id=user_id)
 
-        valid_attr = ['id', 'email', 'hashed_password',
-                      'session_id', 'reset_token']
+        valid_attr = User.metadata.tables['users'].columns.keys()
         for key in kwargs.keys():
             if key not in valid_attr:
                 raise ValueError
