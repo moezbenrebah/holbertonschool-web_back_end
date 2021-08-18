@@ -61,10 +61,12 @@ class DB:
         attributes as passed in the method’s arguments then commit
         changes to the database.
         """
+
         user = self.find_user_by(id=user_id)
+        valid_attr = User.metadata.tables['users'].columns.keys()
 
         for key, value in kwargs.items():
-            if not hasattr(user, key):
+            if key not in valid_attr:
                 raise ValueError
             else:
                 setattr(user, key, value)
