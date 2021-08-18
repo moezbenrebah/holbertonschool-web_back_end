@@ -64,7 +64,7 @@ def logout():
 
 
 @app.route('/profile', methods=['GET'])
-def profile() -> str:
+def profile():
     """respond with 200 status code if the user exist,
     otherwise return 403 HTTP status"""
     session_id = request.cookies.get('session_id')
