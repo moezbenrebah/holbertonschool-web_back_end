@@ -18,7 +18,3 @@ def get_locale():
 def index():
     """display 2-index.html page"""
     return render_template('2-index.html')
-
-
-if __name__ == '__main__':
-    app.run()
