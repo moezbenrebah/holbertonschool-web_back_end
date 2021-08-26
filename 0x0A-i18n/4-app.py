@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-"""
-Flask application
-"""
+"""flask application"""
+
 from flask import Flask, render_template, request
 from flask_babel import Babel, gettext
 Config = __import__('1-app').Config
@@ -12,7 +11,7 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """ Determine the best match with our supported languages. """
     locale = request.args.get('locale')
     if locale is not None and locale in Config.LANGUAGES:
@@ -25,7 +24,7 @@ app.config.from_object('4-app.Config')
 
 
 @app.route('/')
-def default():
+def default() -> str:
     """ Returns a 4-index.html template """
     return render_template('4-index.html')
 
