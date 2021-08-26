@@ -23,7 +23,3 @@ app.config.from_object("1-app.Config")
 def index():
     """display 1-index.html"""
     return render_template('1-index.html')
-
-
-if __name__ == '__main__':
-    app.run()
