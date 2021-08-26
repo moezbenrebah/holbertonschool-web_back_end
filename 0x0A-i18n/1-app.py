@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""""""
+"""route module"""
 
 from flask import Flask, request, render_template
 from flask_babel import Babel
