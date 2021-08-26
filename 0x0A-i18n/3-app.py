@@ -8,7 +8,7 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config(object):
+class Config:
     """ Config class for Babel object """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
@@ -19,13 +19,13 @@ app.config.from_object(Config)
 
 
 @app.route('/')
-def hello():
+def hello() -> str:
     """ render a basic html file """
     return render_template('3-index.html')
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """ a function to determine the best match with the supported languages """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
