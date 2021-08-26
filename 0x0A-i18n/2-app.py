@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""""""
+"""route module"""
 
 from flask import Flask, request, render_template
 from flask_babel import Babel
@@ -18,3 +18,7 @@ def get_locale():
 def index():
     """display 2-index.html page"""
     return render_template('2-index.html')
+
+
+if __name__ == '__main__':
+    app.run()
