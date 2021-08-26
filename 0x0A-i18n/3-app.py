@@ -2,7 +2,7 @@
 """route module"""
 
 from flask import Flask, request, render_template
-from flask_babel import Babel, _
+from flask_babel import Babel, gettext
 Config = __import__('1-app').Config
 
 
