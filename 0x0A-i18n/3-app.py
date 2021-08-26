@@ -3,7 +3,7 @@
 
 from flask import Flask, request, render_template
 from flask_babel import Babel, _
-#Config = __import__('1-app').Config
+Config = __import__('1-app').Config
 
 
 app = Flask(__name__)
@@ -16,7 +16,7 @@ babel = Babel(app)
 #    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
-#app.config.from_object('3-app.Config')
+app.config.from_object('3-app.Config')
 
 
 @app.route('/')
