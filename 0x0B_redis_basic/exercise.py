@@ -43,9 +43,12 @@ def replay(funct: Callable):
 
     inputs = redis_inst.lrange(f'{method}:inputs', 0, -1)
     outputs = redis_inst.lrange(f'{method}:outputs', 0, -1)
-
+    
+    if calls_number == 1:
+        times_str = 'time'
+    msg = '{} was called {} {}:'.format(method_name, calls_number, times_str)
     for key, value in zip(inputs, outputs):
-        result = f'{method}(*{key.decode("utf-8")}) -> {value.decode("utf-8")}'
+        result = f'{method}(*({key.decode("utf-8")},)) -> {value.decode("utf-8")}'
         print(result)
 
 
