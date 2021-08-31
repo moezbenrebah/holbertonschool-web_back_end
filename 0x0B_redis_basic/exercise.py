@@ -48,7 +48,7 @@ def replay(funct: Callable):
         times_str = 'time'
     msg = '{} was called {} {}:'.format(method_name, calls_number, times_str)
     for key, value in zip(inputs, outputs):
-        result = f'{method}(*({key.decode("utf-8")},)) -> {value.decode("utf-8")}'
+        result = f'{method}(*{key.decode("utf-8")}) -> {value.decode("utf-8")}'
         print(result)
 
 
