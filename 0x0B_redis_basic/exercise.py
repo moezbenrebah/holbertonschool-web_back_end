@@ -1,9 +1,24 @@
 #!/usr/bin/env python3
 """redis-py module"""
 
+import functools
 from typing import Callable, Optional, Union
 import redis
 import uuid
+
+
+def count_calls(method: Callable) -> Callable:
+    """counts the cache methods' calls number"""
+    @functools.wraps(method)
+    def wrapper_count_calls(self, *args, **kwargs):
+        """increment the count of key whenever the method is called
+        and return the value
+        """
+        wrapper_count_calls.count = 0
+        wrapper_method = method.__qualname__
+        self._redis.incr(wrapper_method)
+        return method(self, *args, **kwargs)
+    return wrapper_count_calls
 
 
 class Cache:
@@ -15,6 +30,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb
 
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """generate a random key and store value of that key"""
 
