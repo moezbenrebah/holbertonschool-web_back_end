@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-
-from pymongo import MongoClient
-import pprint
+"""list all documents module"""
 
 
 def list_all(mongo_collection):
-    """"""
+    """list all documents in a collection"""
     document = mongo_collection.find()
 
     if not document:
