@@ -12,7 +12,7 @@ def log_infos() -> None:
     client = MongoClient('mongodb://localhost:27017')
     nglogs = client.logs.nginx
 
-     print(
+    print(
         "{} logs".format(
             nglogs.count_documents({})
         )
