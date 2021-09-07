@@ -4,7 +4,7 @@
 from pymongo import MongoClient
 
 
-def log_infos() -> None:
+def log_infos():
     """print nginx logs in mongodb"""
 
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
@@ -12,26 +12,16 @@ def log_infos() -> None:
     client = MongoClient('mongodb://localhost:27017')
     nglogs = client.logs.nginx
 
-    print(
-        "{} logs".format(
-            nglogs.count_documents({})
-        )
-    )
+    print(f'{nglogs.count_documents({})} logs')
 
     print("Methods:")
 
     for method in methods:
-        print(
-            "\tmethod {}: {}".format(
-                method, nglogs.count_documents({'method': method})
-            )
-        )
+        print(f'\tmethod {method}:
+              {nglogs.count_documents({"method": method})}')
 
-    print(
-        "{} status check".format(
-            nglogs.count_documents({'method': 'GET', 'path': '/status'})
-        )
-    )
+    print(f'{nglogs.count_documents({"method": "GET",
+                                     "path": "/status"})} status check')
 
 
 if __name__ == '__main__':
