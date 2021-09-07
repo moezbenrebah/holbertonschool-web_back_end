@@ -10,11 +10,11 @@ def log_infos():
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
     client = MongoClient('mongodb://127.0.0.1:27017')
-    nglogs = client.logs.nginx
+    nginx = client.logs.nginx
 
      print(
         "{} logs".format(
-            nglogs.count_documents({})
+            nginx.count_documents({})
         )
     )
 
@@ -23,13 +23,13 @@ def log_infos():
     for method in methods:
         print(
             "\tmethod {}: {}".format(
-                method, nglogs.count_documents({'method': method})
+                method, nginx.count_documents({'method': method})
             )
         )
 
     print(
         "{} status check".format(
-            nglogs.count_documents({'method': 'GET', 'path': '/status'})
+            nginx.count_documents({'method': 'GET', 'path': '/status'})
         )
     )
 
