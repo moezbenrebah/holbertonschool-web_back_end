@@ -1,0 +1,6 @@
+// update
+
+db.school.update(
+      {"_id" :ObjectId("6135fea822176830502eef55") },
+      { $set: { "address" : "972 Mission street" } }
+);
