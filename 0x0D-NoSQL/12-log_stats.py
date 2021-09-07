@@ -9,7 +9,7 @@ def log_infos():
 
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
-    client = MongoClient('mongodb://localhost:27017')
+    client = MongoClient('mongodb://127.0.0.1:27017')
     nglogs = client.logs.nginx
 
      print(
