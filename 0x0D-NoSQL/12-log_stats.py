@@ -21,11 +21,17 @@ def log_infos():
     print("Methods:")
 
     for method in methods:
-        print(f'\tmethod {method}:
-              {nglogs.count_documents({"method": method})}')
+        print(
+            "\tmethod {}: {}".format(
+                method, nglogs.count_documents({'method': method})
+            )
+        )
 
-    print(f'{nglogs.count_documents({"method": "GET",
-                                     "path": "/status"})} status check')
+    print(
+        "{} status check".format(
+            nglogs.count_documents({'method': 'GET', 'path': '/status'})
+        )
+    )
 
 
 if __name__ == '__main__':
