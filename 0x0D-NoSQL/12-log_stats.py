@@ -10,29 +10,19 @@ def log_infos() -> None:
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
     client = MongoClient('mongodb://127.0.0.1:27017')
-    nginx = client.logs.nginx
+    nglogs = client.logs.nginx
 
-    print(
-        "{} logs".format(
-            nginx.count_documents({})
-        )
-    )
+    print(f'{nglogs.count_documents({})} logs')
 
     print("Methods:")
 
     for method in methods:
-        print(
-            "\tmethod {}: {}".format(
-                method, nginx.count_documents({'method': method})
-            )
-        )
+        print(f'\tmethod {method}:
+              {nglogs.count_documents({"method": method})}')
 
-    print(
-        "{} status check".format(
-            nginx.count_documents({'method': 'GET', 'path': '/status'})
-        )
-    )
+    print(f'{nglogs.count_documents({"method": "GET",
+                                     "path": "/status"})} status check')
 
-    
+
 if __name__ == '__main__':
     log_infos()
