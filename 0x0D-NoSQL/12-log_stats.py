@@ -4,7 +4,7 @@
 from pymongo import MongoClient
 
 
-def log_infos():
+def log_infos() -> None:
     """print nginx logs in mongodb"""
 
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
