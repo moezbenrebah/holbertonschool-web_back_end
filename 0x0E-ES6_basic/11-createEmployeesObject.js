@@ -1,3 +1,11 @@
 export default function createEmployeesObject(departmentName, employees) {
-  return { [`${departmentName}`]: employees.map((a) => a) }
+  const value = [];
+  for (const idx of employees) {
+    value.push(idx);
+  }
+  const obj = {
+    [`${departmentName}`]: value,
+  };
+
+  return obj;
 }
