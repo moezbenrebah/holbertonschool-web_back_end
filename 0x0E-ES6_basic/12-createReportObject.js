@@ -1,7 +1,6 @@
 export default function createReportObject(employeesList) {
   const allEmployees = {};
-  const entries = Object.entries(employeesList);
-  for (const [k, v] of entries) {
+  for (const [k, v] of Object.entries(employeesList)) {
     allEmployees[`${k}`] = v;
   };
 
