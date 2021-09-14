@@ -1,4 +1,4 @@
-export default function getFullResponseFromAPI(success) {
+export default async function getFullResponseFromAPI(success) {
   return new Promise((resolve, reject) => {
     if (success) {
       resolve({
@@ -6,7 +6,7 @@ export default function getFullResponseFromAPI(success) {
         body: 'Success',
       });
     } else {
-      reject(new Error('The fake API is not working currently'));
+      reject(Error('The fake API is not working currently'));
     }
   });
 }
