@@ -22,11 +22,11 @@ export default class Pricing {
     this._currency = currency;
   }
 
-  displayFullPrice(amount, currency) {
+  displayFullPrice() {
     return `${this._amount} ${this._currency.displayFullCurrency()}`;
   }
 
   convertPrice(amount, conversionRate) {
-    return this._amount * conversionRate;
+    return amount * conversionRate;
   }
 }
