@@ -10,6 +10,6 @@ export function queryAPI(endpoint) {
   }
 
   if (result >= 5) {
-    throw new Error('Endpoint load is high');
+    throw Error('Endpoint load is high');
   }
 }
