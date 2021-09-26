@@ -15,7 +15,8 @@
     "chai-http": "^4.3.0",
     "chokidar": "^3.5.2",
     "express": "^4.17.1",
-    "glob-base": "^0.3.0"
+    "glob-base": "^0.3.0",
+    "npm": "^7.24.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
