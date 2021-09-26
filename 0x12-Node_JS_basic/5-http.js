@@ -13,8 +13,7 @@ const app = http.createServer(async (req, res) => {
       initParse += result;
       res.end(initParse)
     }).catch((error) => {
-      initParse += error.message;
-      res.end(initParse);
+      res.end(`This is the list of our students\n${error.message}`);
     });
   }
 });
