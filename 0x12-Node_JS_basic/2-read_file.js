@@ -2,10 +2,11 @@ const fs = require('fs');
 
 function countStudents(filePath) {
   try {
-    const data = fs.readFileSync(filePath, { encoding: 'utf8' }).split(/\r?\n/);
+    const data = fs.readFileSync(filePath, { encoding: 'utf8' });
     const studentList = [];
-    const fieldName = data[0].split(',');
-    const bodyContent = data.slice(1);
+    const arr = data.split(/\r?\n/);
+    const fieldName = arr[0].split(',');
+    const bodyContent = arr.slice(1);
 
     for (let i = 0; i < bodyContent.length; i += 1) {
       const result = bodyContent[i].split(',');
