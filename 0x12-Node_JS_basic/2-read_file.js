@@ -17,7 +17,7 @@ function countStudents(filePath) {
         studentList.push(line);
       }
     }
-    
+
     let csClass = 0;
     let sweClass = 0;
     const cs = [];
@@ -25,10 +25,10 @@ function countStudents(filePath) {
 
     studentList.forEach((n) => {
       if (n.field === 'CS') {
-        csClass++;
+        csClass += 1;
         cs.push(n.firstname);
       } else if (n.field === 'SWE') {
-        sweClass++;
+        sweClass += 1;
         swe.push(n.firstname);
       }
     });
