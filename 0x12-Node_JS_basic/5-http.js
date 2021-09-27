@@ -6,8 +6,7 @@ const app = http.createServer(async (req, res) => {
   res.set('content-type', 'text/plain');
   if (req.url === '/') {
     res.end('Hello Holberton School!');
-  }
-  if (req.url === '/students') {
+  } else if (req.url === '/students') {
     let result = 'This is the list of our students\n';
     await countStudents(process.argv[2])
       .then((data) => {
