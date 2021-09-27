@@ -1,29 +1,22 @@
 const http = require('http');
 const countStudents = require('./3-read_file_async');
 
-const hostname = '127.0.0.1';
-const port = 1245;
-
-const app = http.createServer(async (req, res) => {
-  res.statusCode = 200;
+const app = http.createServer((req, res) => {
   if (req.url === '/') {
     res.end('Hello Holberton School!');
-  } else if (req.url === '/students') {
-    let dbInfo = 'This is the list of our students\n';
-    await countStudents(process.argv[2])
-      .then((msg) => {
-        dbInfo += msg;
-        res.end(dbInfo);
+  }
+  if (req.url === '/students') {
+    countStudents(process.argv[2])
+      .then((data) => {
+        const dt = `This is the list of our students\n${data}`;
+        res.end(dt);
       })
-      .catch((err) => {
-        dbInfo += err.message;
-        res.end(dbInfo);
+      .catch((error) => {
+        res.end(`This is the list of our students\n${error.message}`);
       });
   }
 });
 
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}`);
-});
+app.listen(1245);
 
 module.exports = app;
