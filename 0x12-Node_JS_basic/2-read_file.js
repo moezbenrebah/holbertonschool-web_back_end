@@ -8,7 +8,9 @@ const countStudents = (filePath) => {
     const rows = {};
     for (const row of data) {
       const line = row.split(',');
-      if (!rows[line[3]]) rows[line[3]] = [];
+      if (!rows[line[3]]) {
+        rows[line[3]] = [];
+      }
       rows[line[3]].push(line[0]);
     }
     for (const cls in rows) {
