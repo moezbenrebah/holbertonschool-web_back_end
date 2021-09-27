@@ -1,19 +1,16 @@
 const http = require('http');
-
-const args = process.argv.slice(2);
 const countStudents = require('./3-read_file_async');
 
-const DATABASE = args[0];
 
 const app = http.createServer(async (req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-
-  const { url } = req;
+  res.setHeader('content-type', 'text/plain');
 
   if (url === '/') {
     res.write('Hello Holberton School!');
-  } else if (url === '/students') {
+  }
+
+  if (url === '/students') {
     res.write('This is the list of our students\n');
     try {
       const students = await countStudents(DATABASE);
@@ -22,10 +19,8 @@ const app = http.createServer(async (req, res) => {
       res.end(error.message);
     }
   }
-  res.statusCode = 404;
-  res.end();
 });
 
-app.listen(1245);
+app.listen(1245, () => console.log('Server is running...');
 
 module.exports = app;
