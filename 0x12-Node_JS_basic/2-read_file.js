@@ -3,10 +3,10 @@ const fs = require('fs');
 const countStudents = (path) => {
   try {
     let data = fs.readFileSync(path, 'utf8').toString().split('\n');
-    let bodyContent = data.slice(1, data.length - 1);
-    console.log(`Number of students: ${bodyContent.length}`);
+    data = data.slice(1, data.length - 1);
+    console.log(`Number of students: ${data.length}`);
     const rows = {};
-    for (const row of bodyContent) {
+    for (const row of data) {
       const line = row.split(',');
       if (!rows[line[3]]) rows[line[3]] = [];
       rows[line[3]].push(line[0]);
