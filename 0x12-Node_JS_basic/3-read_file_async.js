@@ -1,9 +1,9 @@
 const fs = require('fs');
 
 function countStudents(path) {
-  const promise = (res, rej) => {
+  const promise = (resolve, reject) => {
     fs.readFile(path, 'utf8', (error, data) => {
-      if (error) rej(Error('Cannot load the database'));
+      if (error) reject(Error('Cannot load the database'));
       const messages = [];
       let message;
       const content = data.toString().split('\n');
@@ -13,22 +13,23 @@ function countStudents(path) {
       message = `Number of students: ${nStudents}`;
       console.log(message);
       messages.push(message);
-      const subjects = {};
+
+      const fields = {};
       for (const i in students) {
         if (i !== 0) {
-          if (!subjects[students[i][3]]) subjects[students[i][3]] = [];
-          subjects[students[i][3]].push(students[i][0]);
+          if (!fields[students[i][3]]) fields[students[i][3]] = [];
+          fields[students[i][3]].push(students[i][0]);
         }
       }
-      delete subjects.subject;
-      for (const key of Object.keys(subjects)) {
+      delete fields.field;
+      for (const key of Object.keys(fields)) {
         message = `Number of students in ${key}: ${
-          subjects[key].length
-        }. List: ${subjects[key].join(', ')}`;
+          fields[key].length
+        }. List: ${fields[key].join(', ')}`;
         console.log(message);
         messages.push(message);
       }
-      res(messages);
+      resolve(messages);
     });
   };
   return new Promise(promise);
