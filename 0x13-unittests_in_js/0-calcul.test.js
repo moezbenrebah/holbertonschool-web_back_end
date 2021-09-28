@@ -8,6 +8,7 @@ describe('calculateNumber', function() {
     assert.strictEqual(calculateNumber(1.2, 3.7), 5);
     assert.strictEqual(calculateNumber(1.5, 3.7), 6);
     assert.strictEqual(calculateNumber(1.7, 2), 4);
+    assert.strictEqual(calculateNumber(1.7, 2.1), 4);
   });
   it('checks negative numbers output', function() {
     assert.strictEqual(calculateNumber(2, -2), 0);
