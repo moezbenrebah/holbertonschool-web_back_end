@@ -9,7 +9,7 @@ describe('sendPaymentRequestToApi function', function() {
 
   it('validate the usage of the Utils function', function() {
     const stub = sinon.stub(Utils, 'calculateNumber');
-    stub.withArgs('SUM', 100, 20).returns(10);
+    stub.withArgs('SUM', 100, 20).returns(20);
     sendPaymentRequestToApi(100, 20);
     expect(spyConsole.calledOnce).to.be.true;
     expect(spyConsole.calledWith('The total is: 10')).to.be.true;
