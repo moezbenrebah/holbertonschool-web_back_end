@@ -11,8 +11,8 @@ describe('sendPaymentRequestToApi function', function() {
     const stub = sinon.stub(Utils, 'calculateNumber');
     stub.withArgs('SUM', 100, 20).returns(10);
     sendPaymentRequestToApi(100, 20);
-    expect(spyConsole.calledOnce).to.be.true;
-    expect(spyConsole.calledWith('The total is: 10')).to.be.true;
+    expect(spy.calledOnce).to.be.true;
+    expect(spy.calledWith('The total is: 10')).to.be.true;
     stub.restore()
     spy.restore();
   });
